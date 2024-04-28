@@ -1,0 +1,10 @@
+body {
+    background-color: #2d327d;
+    color: white;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
