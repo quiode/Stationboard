@@ -12,6 +12,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
+  "engines": {
+    "node": "^20"
+  },
+  "engineStrict": true,
   "dependencies": {
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
