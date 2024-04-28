@@ -1,19 +1,24 @@
 <script setup lang="ts">
 import startup from "@/scripts/startup";
 import { ref } from "vue";
-import { constructIframeURL, station } from "@/scripts/url";
+import { constructIframeURL, stations, title } from "@/scripts/url";
 import { getStation } from "@/scripts/stationFinder";
 
 startup();
 
 // find the correct station
 const url = ref("");
-getStation(station() || "").then((station) => {
-  if (station?.name) {
-    window.document.title += " - " + station.name;
 
+Promise.all(stations().map(getStation)).then((stations) => {
+  const filteredStations = stations
+    .filter((station) => station?.name)
+    .map((station) => {
+      return { name: station.name, id: station.id };
+    });
+
+  if (filteredStations.length > 0) {
     // construct the correct url
-    url.value = constructIframeURL(station.name, station.id)
+    url.value = constructIframeURL(filteredStations, title())
       .toString()
       .replace(/\+/g, " ");
   }
