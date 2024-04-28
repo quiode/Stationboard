@@ -1,22 +1,34 @@
 <script setup lang="ts">
-import startup from '@/scripts/startup';
-import StationDisplay from '@/components/StationDisplay.vue'
-import { computed, ref } from 'vue'
-import NoStation from '@/components/NoStation.vue'
-import { station } from '@/scripts/urlParams'
+import startup from "@/scripts/startup";
+import { ref } from "vue";
+import { constructIframeURL, station } from "@/scripts/url";
+import { getStation } from "@/scripts/stationFinder";
 
 startup();
 
-const stationName = ref(station());
-const stationDefined = computed(() => stationName.value != null);
+// find the correct station
+const url = ref("");
+getStation(station() || "").then((station) => {
+  if (station?.name) {
+    window.document.title += " - " + station.name;
+
+    // construct the correct url
+    url.value = constructIframeURL(station.name, station.id)
+      .toString()
+      .replace(/\+/g, " ");
+  }
+});
 </script>
 
 <template>
-  <main>
-    <StationDisplay v-if="stationDefined" :station="stationName"></StationDisplay>
-    <NoStation v-else></NoStation>
-  </main>
+  <iframe v-if="url != ''" :src="url" class="iframe"></iframe>
+  <h1 v-else>No station defined!</h1>
 </template>
 
 <style scoped>
+.iframe {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+}
 </style>
