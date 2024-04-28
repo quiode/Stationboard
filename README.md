@@ -2,6 +2,19 @@
 
 Custom SBB Stationboard using the search.ch API
 
+## Url Params
+
+- `title`
+-
+    - Optional, the title of the board
+- `station`x
+-
+    - x is a number from 1-10, denoting the station
+
+### Example
+
+`http://localhost?title=Departure&station1=Bern&station2=Luzern`
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
