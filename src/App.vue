@@ -18,7 +18,11 @@ Promise.all(stations().map(getStation)).then((stations) => {
 
   if (filteredStations.length > 0) {
     // construct the correct url
-    url.value = constructIframeURL(filteredStations, title())
+    url.value = constructIframeURL(
+      filteredStations,
+      title(),
+      8 / filteredStations.length,
+    )
       .toString()
       .replace(/\+/g, " ");
   }
