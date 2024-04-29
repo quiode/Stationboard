@@ -15,6 +15,10 @@ Custom SBB Stationboard using the search.ch API
 
 `http://localhost?title=Departure&station1=Bern&station2=Luzern`
 
+## Startup command
+
+`firefox --kiosk --new-window "http://localhost:5173?station1=Zürich"`
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).

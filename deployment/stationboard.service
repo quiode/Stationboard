@@ -1,0 +1,12 @@
+[Unit]
+Description=Stationboard in Firefox Kiosk Mode
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/firefox --kiosk --new-window "http://localhost:5173?station1=Zürich"
+Restart=always
+User=quio
+Group=quio
+
+[Install]
+WantedBy=graphical.target
